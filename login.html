@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>良仓登录</title>
+		<Link rel="shortcut icon" href="img/favicon.ico">
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			#loginbox {
+				width: 300px;
+				height: 586px;
+				margin: 0 auto;
+				position: relative;
+			}
+			
+			#log {
+				width: 113px;
+				height: 195px;
+				float: left;
+				margin-left: 93.5px;
+				margin-top: 90px;
+				background: url(img/nlicon.png);
+			}
+			
+			#tab {
+				float: left;
+				width: 300px;
+				height: 280px;
+				margin-top: 20px;
+			}
+			
+			#user {
+				width: 260px;
+				height: 35px;
+				margin-left: 5px;
+				margin-top: 20px;
+				border: none;
+				border-bottom: 1px solid black;
+				outline: none;
+				font-size: 16px;
+				padding-left: 30px;
+				background: url(img/nlphone.png) no-repeat 0px 6px;
+			}
+			
+			#pwd {
+				width: 260px;
+				height: 35px;
+				margin-left: 5px;
+				margin-top: 20px;
+				border: none;
+				border-bottom: 1px solid black;
+				outline: none;
+				font-size: 16px;
+				padding-left: 30px;
+				background: url(img/nlcode.png) no-repeat 2px 8px;
+			}
+			
+			#chek-p {
+				font-size: 12px;
+				margin-top: 20px;
+			}
+			
+			#sub {
+				width: 290px;
+				height: 50px;
+				font-size: 18px;
+				color: white;
+				background-color: #25292E;
+				border-radius: 6px;
+				border: none;
+				outline: none;
+				cursor: pointer;
+				margin-left: 5px;
+				margin-top: 20px;
+			}
+			
+			#morelogin {
+				width: 300px;
+				text-align: center;
+				font-size: 16px;
+				margin-top: 30px;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="loginbox">
+			<a href="index.html"><div id="log"></div></a>
+			<div id="tab">
+				<input type="text" name="user" id="user" value="" placeholder="请输入手机号" />
+				<input type="password" name="password" id="pwd" value="" placeholder="请输入密码" />
+				<p id="chek-p"><input type="checkbox" name="chek" id="chek" value="" checked="" />自动登陆</p>
+				<input type="submit" name="sub" id="sub" value="登录" />
+				<p id="morelogin">更多方式登录》</p>
+			</div>
+		</div>
+	</body>
+	<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$("#sub").click(function() {
+			$user = $("#user").val();
+		    $pwd = $("#pwd").val();
+			$.ajax({
+				type: "post",
+				url: "http://lc.shudong.wang/api_user.php",
+				dataType: "json",
+				data: {
+					status: "login",
+					username: $user,
+					password: $pwd
+				},
+				success: function(data) {
+					if(data.code == 0) {
+//						alert(data.message);
+						console.log(data.data.username);
+						var username = data.data.username;
+						var userlog = data.data.avator;
+						var usercode = data.code;
+						sessionStorage.usercode = usercode;
+						sessionStorage.username = username;
+						sessionStorage.userlog = userlog;
+						sessionStorage.token = data.data.token;
+						location.href = "index.html";
+					} else {
+						alert(data.message)
+					}
+				}
+			});
+			
+		});
+		//判断是否敲击了Enter键 
+		$(document).keyup(function(event){ 
+		    if(event.keyCode ==13){ 
+		      $("#sub").trigger("click"); 
+		    } 
+		});
+	</script>
+
+</html>

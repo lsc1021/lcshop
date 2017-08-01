@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>良仓注册</title>
+		<Link rel="shortcut icon" href="img/favicon.ico">
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				background: #999999;
+			}
+			#zhuce{
+				width: 565px;
+				height: 630px;
+				margin: 0 auto;
+				position: relative;
+			}
+			#log{
+				width: 226px;
+				height: 106px;
+				background: url(img/logo_icon.png);
+				float: left;
+				margin-left: 170px;
+				margin-top: 30px;
+			}
+			#zhucebox{
+				float: left;
+				width: 500px;
+				height: 400px;
+				margin-top: 30px;
+				color: white;
+				margin-left: 15px;
+				font-weight: bolder;
+				padding-left: 30px;
+			}
+		    #zhucebox p input{
+				width: 300px;
+				height: 50px;
+				background: #CBCBCB;
+				border: none;
+				outline: none;
+				margin-left: 30px;
+				color: white;
+				font-weight: bolder;
+				padding-left: 20px;
+			}
+			#zhucebox p{
+				width: 500px;
+				height: 50px;
+				margin-top: 20px;
+				font-size:13px ;
+				line-height: 50px;
+			}
+			 #zhucebox p #chek{
+				width: 13px;
+				height: 13px;
+				margin-left: 70px;
+			}
+			#zhucebtn{
+				width: 280px;
+				height: 50px;
+				background: #25292E;
+				border-radius: 6px;
+				border: none;
+				outline: none;
+				cursor: pointer;
+				color: white;
+                font-size: 16px;
+                font-weight: bolder;
+                margin-left: 85px;
+			}
+			#loginbtn{
+				color: white;
+				float: right;
+				margin-right: 115px;
+			}
+			#lianjie{
+				color: dodgerblue;
+			}
+			#zhucebox .titel{
+				position: absolute;
+				top: 166px;
+				left: 460px;
+				width: 100px;
+				color: red;
+				display: none;
+			}
+			#zhucebox .tipwd{
+				position: absolute;
+				top: 236px;
+				left: 460px;
+				width: 100px;
+				color: red;
+				display: none;
+			}
+			#zhucebox .tiyan{
+				position: absolute;
+				top: 306px;
+				left: 460px;
+				width: 100px;
+				color: red;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="zhuce">
+			<a href="index.html"><div id="log"></div></a>
+			<div id="zhucebox">
+				    <p>手机号码<input type="tel" name="phone" id="phone" value="" placeholder="请输入手机号"/></p>
+				    <p>输入密码<input type="password" name="password" id="pwd" value="" placeholder="6-20位数字与字母组成，区分大小写"/></p>
+				    <p>确认密码<input type="password" name="pwd-1" id="pwd-1" value="" placeholder="确认密码"/></p>
+				    <p><input type="checkbox" name="chek" id="chek" value="" checked=""/>同意 <a href="" id="lianjie">良仓注册条款</a> </p>
+				    <input type="submit" name="zhucebtn" id="zhucebtn" value="立即注册" disabled=""/>
+			    <p><a href="login.html" id="loginbtn">已有账号直接登录</a></p>
+			    <p class="titel">手机格式错误！</p>
+			    <p class="tipwd">密码格式错误!</p>
+			    <p class="tiyan">两次密码不相同!</p>
+			</div>
+		</div>
+	</body>
+	<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$("#phone").blur(function(){
+		       var reg = /^1[3578]\d{9}$/;
+		       $phone = $("#phone").val();
+		       if(reg.test($phone)==false){
+		       	$(".titel").show();
+		       	$("#zhucebtn").attr("disabled",true);
+		       }else{
+		       	$(".titel").hide();
+		       	$("#zhucebtn").attr("disabled",false);
+		       }
+		})
+		$("#pwd").blur(function(){
+			var reg =/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$/;
+			$pwd = $("#pwd").val();
+			if(reg.test($pwd)==false){
+				$(".tipwd").show();
+				$("#zhucebtn").attr("disabled",true);
+			}else{
+				$(".tipwd").hide();
+				$("#zhucebtn").attr("disabled",false);
+			}
+		})
+		$("#pwd-1").blur(function(){
+			$pwd1 = $("#pwd-1").val();
+			$pwd = $("#pwd").val();
+			if($pwd!=$pwd1){
+				$(".tiyan").show();
+				$("#zhucebtn").attr("disabled",true);
+			}else{
+				$(".tiyan").hide();
+				$("#zhucebtn").attr("disabled",false);
+			}
+		})
+		function han(){
+		    $phone = $("#phone").val();
+		    $pwd = $("#pwd").val();
+		    $pwd1 = $("#pwd-1").val();
+			$yes = $("#chek").prop("checked");
+			if($yes){
+				$("#zhucebtn").attr("disabled",true);
+			}else{
+				$("#zhucebtn").attr("disabled",false);
+			}
+			if($phone==""||$pwd==""||$pwd1==""||$pwd1==""){
+				$("#zhucebtn").attr("disabled",true);
+			}
+		};
+		han();
+		$("#zhucebtn").click(function(){
+			$phone = $("#phone").val();
+		    $pwd = $("#pwd").val();
+			$.ajax({
+				type:"post",
+				url:"http://lc.shudong.wang/api_user.php",
+				dataType:"json",
+				data:{
+					status:"register",
+					username:$phone,
+					password:$pwd
+				},
+				success:function(data){
+					if(data.code==0){
+						alert(data.message);
+						location.href="login.html";
+					}else{
+						alert(data.message);
+						console.log(data.message);
+					}
+				}
+		    });
+		})
+		//判断是否敲击了Enter键 
+		$(document).keyup(function(event){ 
+		    if(event.keyCode ==13){ 
+		      $("#zhucebtn").trigger("click"); 
+		    } 
+		});
+	</script>
+</html>

@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>良品详情.良仓</title>
+		<Link rel="shortcut icon" href="img/favicon.ico">
+		<link rel="stylesheet" type="text/css" href="topnav.css" />
+		<style type="text/css">
+			#buy {
+				width: 1000px;
+				height: 450px;
+				position: relative;
+				margin: 0 auto;
+				margin-top: 20px;
+			}
+			
+			.buy-redy {
+				width: 1000px;
+				height: 35px;
+				color: #696969;
+				font-size: 14px;
+			}
+			
+			.buy-tu {
+				width: 350px;
+				height: 350px;
+				float: left;
+				margin-left: 20px;
+				position: relative;
+			}
+			
+			.buy-tu img {
+				width: 350px;
+				height: 350px;
+			}
+			
+			.buy-xinxi {
+				width: 500px;
+				height: 350px;
+				float: left;
+				margin-left: 50px;
+			}
+			
+			.jiehsao {
+				width: 500px;
+				height: 165px;
+				margin-top: 10px;
+			}
+			
+			.jiehsao-txt {
+				width: 500px;
+				height: 100px;
+				font-size: 30px;
+				font-weight: bold;
+				color: #292F34;
+			}
+			
+			.jiage {
+				width: 500px;
+				height: 30px;
+				color: #696969;
+				line-height: 30px;
+				margin-bottom: 8px;
+			}
+			
+			.jia-num {
+				color: dodgerblue;
+			}
+			
+			.zhengpin {
+				width: 400px;
+				height: 55px;
+				margin: 0 auto;
+			}
+			
+			.buybtn {
+				width: 400px;
+				height: 50px;
+				background: black;
+				color: white;
+				font-size: 18px;
+				text-align: center;
+				margin: 0 auto;
+				margin-bottom: 10px;
+				cursor: pointer;
+				line-height: 50px;
+			}
+			
+			.buy-car {
+				width: 190px;
+				height: 50px;
+				border: 1px solid black;
+				text-align: center;
+				font-size: 18px;
+				margin-left: 50px;
+				outline: none;
+				cursor: pointer;
+				background: white;
+			}
+			
+			.buy-fen {
+				width: 190px;
+				height: 50px;
+				border: 1px solid black;
+				text-align: center;
+				font-size: 18px;
+				margin-left: 10px;
+				outline: none;
+				cursor: pointer;
+				background: white;
+			}
+			
+			.bigtu {
+				width: 200px;
+				height: 200px;
+				position: absolute;
+				left: 371px;
+				display: none;
+				border-radius: 50%;
+			}
+			
+			.fangda {
+				width: 80px;
+				height: 80px;
+				position: absolute;
+				background: rgba(0, 0, 0, 0.5);
+				left: 0px;
+				top: 0px;
+				border-radius: 50%;
+				cursor: crosshair;
+				display: none;
+			}
+			
+			.shuliang {
+				width: 500px;
+				height: 30px;
+				line-height: 30px;
+				color: #696969;
+			}
+			
+			.shuliang-num {
+				width: 50px;
+				height: 20px;
+				text-align: center;
+				color: #696969;
+				border: 1px solid #999999;
+				outline: none;
+			}
+			
+			.jia {
+				width: 15px;
+				height: 20px;
+				border: 1px solid black;
+				background: white;
+				color: black;
+				outline: none;
+			}
+			
+			.jian {
+				width: 15px;
+				height: 20px;
+				border: 1px solid black;
+				background: white;
+				color: black;
+				outline: none;
+			}
+			.u-flyer{
+				width: 100px;
+				height: 100px;
+				border-radius: 50%;
+				z-index: 30;
+			}
+			#msg {
+				position: absolute;
+				width: 135px;
+				height: 1px;
+				background-color: #9E9E9E;
+				left: -50px;
+				top: 55px;
+				z-index: 20;
+				font-size: 14px;
+				color: white;
+				display: none;
+			}
+		</style>
+	</head>
+
+<body>
+	<div id="zhengye">
+		<!--导航body-->
+		<div id="top">
+			<a href="index.html">
+				<div id="log"></div>
+			</a>
+			<ul id="ue">
+				<li class="ue-li" id="logging">
+					<div id="lian">
+						<a href="login.html">登录&nbsp;</a>
+						<a href="zhuce.html">&nbsp;注册</a>
+					</div>
+					<div id="yonghu">
+						<div id="userlog">
+							<img src="" />
+						</div>
+						<p id="username"></p>
+						<ul id="userxixi">
+							<li>个人设置</li>
+							<li>收货信息</li>
+							<li id="backuser">退出</li>
+						</ul>
+					</div>
+				</li>
+				<li class="ue-li">|</li>
+				<li class="ue-li" id="shopping"> <span class="jinum"></span>购物车
+					<ul class="shop-ul">
+
+						<li class="kongcar">
+
+							<ul class="zhanshi">
+
+							</ul>
+
+						</li>
+						<a  id="tiaozhuan">
+							<li class="shopcar-li">快去抢购良仓商品吧！</li>
+						</a>
+
+					</ul>
+                    <div id="msg">已成功加入购物车！</div>
+				
+				</li>
+
+				<li class="ue-li">|</li>
+				<li class="ue-li" id="news">消息
+					<ul class="news-ul">
+						<li>动态
+							<div class="news-num">0</div>
+						</li>
+						<li>评论
+							<div class="news-num">0</div>
+						</li>
+						<li>私信
+							<div class="news-num">0</div>
+						</li>
+						<li>粉丝
+							<div class="news-num">0</div>
+						</li>
+						<li>喜欢
+							<div class="news-num">0</div>
+						</li>
+						<li>通知
+							<div class="news-num">0</div>
+						</li>
+					</ul>
+				</li>
+				<li class="ue-li">|</li>
+				<li class="ue-li" id="add">添加良品</li>
+			</ul>
+		</div>
+		<div id="nav">
+			<div class="nav-n"><a href="index.html" style="color: black;">首页</a></div>
+			<div class="nav-n" id="navshop" style="border-bottom: 4px solid black;"><a href="shopping.html" style="color: black;">商店</a>
+				<ul id="shop">
+					<li class="shop-li">
+						<ul class="shop_1">
+							<li class="shop-li-1" style="background: url(img/23687.png) no-repeat 5px -5px;background-size: 50px 50px;">家居</li>
+							<li class="shop-li-1" style="background: url(img/23685.png) no-repeat 5px -5px;background-size: 50px 50px;">家具</li>
+							<li class="shop-li-1" style="background: url(img/23686.png) no-repeat 5px -5px;background-size: 50px 50px;">文具</li>
+							<li class="shop-li-1" style="background: url(img/23683.png) no-repeat 5px -5px;background-size: 50px 50px;">数码</li>
+							<li class="shop-li-1" style="background: url(img/23682.png) no-repeat 5px -5px;background-size: 50px 50px;">玩乐</li>
+							<li class="shop-li-1" style="background: url(img/23684.png) no-repeat 5px -5px;background-size: 50px 50px;">厨卫</li>
+							<li class="shop-li-1" style="background: url(img/23680.png) no-repeat 5px -5px;background-size: 50px 50px;">美食</li>
+						</ul>
+					</li>
+					<li class="shop-li-no" id="li1"></li>
+					<li class="shop-li">
+						<ul class="shop_2">
+							<li class="shop-li-1" style="background: url(img/23679.png) no-repeat 5px -5px;background-size: 50px 50px;">男装</li>
+							<li class="shop-li-1" style="background: url(img/23678.png) no-repeat 5px -5px;background-size: 50px 50px;">女装</li>
+							<li class="shop-li-1" style="background: url(img/23677.png) no-repeat 5px -5px;background-size: 50px 50px;">童装</li>
+							<li class="shop-li-1" style="background: url(img/23676.png) no-repeat 5px -5px;background-size: 50px 50px;">鞋包</li>
+							<li class="shop-li-1" style="background: url(img/23675.png) no-repeat 5px -5px;background-size: 50px 50px;">配饰</li>
+							<li class="shop-li-1" style="background: url(img/23681.png) no-repeat 5px -5px;background-size: 50px 50px;">美护</li>
+							<li class="shop-li-1" style="background: url(img/23674.png) no-repeat 5px -5px;background-size: 50px 50px;">户外</li>
+						</ul>
+					</li>
+					<li class="shop-li-no" id="li2"></li>
+					<li class="shop-li">
+						<ul class="shop_3">
+							<li class="shop-li-1" style="background: url(img/23671.png) no-repeat 5px -5px;background-size: 50px 50px;">植物</li>
+							<li class="shop-li-1" style="background: url(img/23668.png) no-repeat 5px -5px;background-size: 50px 50px;">图书</li>
+							<li class="shop-li-1" style="background: url(img/23669.png) no-repeat 5px -5px;background-size: 50px 50px;">礼物</li>
+							<li class="shop-li-1" style="background: url(img/23672.png) no-repeat 5px -5px;background-size: 50px 50px;">艺术</li>
+							<li class="shop-li-1" style="background: url(img/23670.png) no-repeat 5px -5px;background-size: 50px 50px;">推荐</li>
+						</ul>
+					</li>
+					<li class="shop-li-no" id="li3"></li>
+					<div id="yuekan"></div>
+				</ul>
+			</div>
+
+			<div class="nav-n" id="navmagazine">杂志
+				<div id="magazine">
+
+				</div>
+			</div>
+			<div class="nav-n" id="navshare">分享
+				<div id="share">
+
+				</div>
+			</div>
+			<div class="nav-n">达人</div>
+			<div id="sek">
+				<div id="seek">
+
+					<input type="text" name="seektxt" id="seektxt" value="" placeholder="serch……" />
+				</div>
+			</div>
+			<div id="seekbtn"></div>
+		</div>
+
+		<!--商品详情-->
+		<div id="buy">
+			<div class="buy-redy">
+				良仓 &gt; <span class="buy-name"> </span>
+			</div>
+			<div class="buy-tu"><img src="" />
+				<div class="fangda"></div>
+			</div>
+			<div class="bigtu"></div>
+			<div class="buy-xinxi">
+				<div class="jiehsao">
+					<div class="jiehsao-txt">
+
+					</div>
+
+					<div class="jiage">价格:<span class="jia-num"></span></div>
+					<div class="shuliang">数量：
+						<input type="button" name="jian" class="jian" value="-" />
+						<input type="text" name="" class="shuliang-num" value="" readonly="" />
+						<input type="button" name="jia" class="jia" value="+" />
+					</div>
+				</div>
+				<div class="zhengpin">
+					<img src="img/zhengpin.png" />
+				</div>
+				<div class="buybtn">
+					立即购买
+				</div>
+				<p><input type="button" name="" class="buy-car" value="加入购物车" />
+					<input type="button" name="" class="buy-fen" value="分享" /> </p>
+
+			</div>
+		</div>
+
+		<!--尾部-->
+
+		<div id="bot-1">
+			<div id="kong"></div>
+			<p>良仓商店 / OUR SHOP</p>
+			<div id="yuedu"></div>
+		</div>
+		<div id="bot-2">
+			<div id="bot-auto">
+				<div id="bot-2left">
+					<div id="app">
+						<p>iPhone Android</p>
+						<p>客户端下载</p>
+						<div id="erwei">
+							<div id="iphone"></div>
+							<div id="android"></div>
+							<p class="appleft">下载iPhone版</p>
+							<p class="appright">下载Android版</p>
+						</div>
+					</div>
+					<div class="friendly">
+						<p class="toplink">
+							<a href="">关于良仓</a> |
+							<a href="">服务协议</a> |
+							<a href="">隐私保护政策</a> |
+							<a href="">使用指南</a> |
+							<a href="">联系我们</a> |
+							<a href="">加入我们</a> |
+							<a href="">友情链接</a> |
+							<a href="">私信良仓</a>
+						</p>
+						<p><span class="numLeFont">©</span>&nbsp;2013-2015 北京良仓文化传播有限公司版权所有&nbsp;京<span class="numLeFont">ICP</span>备<span class="numLeFont">13010677</span>号<span class="numLeFont">-1</span>&nbsp;京公网安备<span class="numLeFont">11010502025627</span></p>
+						<p>&nbsp;&nbsp;公司名称：北京良仓文化传播有限公司&nbsp;&nbsp;电话：010-58263516</p>
+						<p>&nbsp;&nbsp;公司地址：北京朝阳区百子湾路32号6号楼1层60号.</p>
+						<p>&nbsp;&nbsp;社会信用统一代码：91110105059231575L&nbsp;&nbsp;食品许可证：JY11105160159557&nbsp;&nbsp;</p>
+						<p>&nbsp;&nbsp;图书证名称：中华人民共和国出版物经营许可证&nbsp;&nbsp;图书证编号：新出发京零 字第 朝 150051 号&nbsp;&nbsp;</p>
+					</div>
+				</div>
+				<div id="bot-2right">
+					<div id="gongzhonghao">
+
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+
+		<!--返回顶部-->
+		<div id="backtop">&and;</div>
+	
+		
+	</div>
+</body>
+	<script type="text/ecmascript" id="moban">
+		<li class="shopliebiao">
+				<div class="carlog">
+					<img src="<%= goods_thumb %>"/>
+				</div>
+				<div class="cartext"><%= goods_name %></div>
+				<div class="carnum">
+					数量：<span class="carnum-shuzi"><%= goods_number %></span><div class="carnum-jiage"><%= goods_price %></div>
+				</div>
+		</li>
+	</script>
+	<script src="http://apps.bdimg.com/libs/underscore.js/1.7.0/underscore-min.js" charset="utf-8"></script>
+	<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+	<script src="topnav.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.fly.js" type="text/javascript" charset="utf-8"></script>
+	
+	<script type="text/javascript">
+		var small = document.getElementsByClassName("buy-tu")[0];
+		var big = document.getElementsByClassName("bigtu")[0];
+		var fdj = document.getElementsByClassName("fangda")[0];
+		var buy = document.getElementById("buy");
+		//划入出现
+		small.onmouseover = function() {
+			big.style.display = "block";
+			fdj.style.display = "block"
+		}
+		//划出消失
+		small.onmouseout = function() {
+			big.style.display = "none";
+			fdj.style.display = "none"
+		}
+		/*移动事件
+		 * 鼠标移动 放大镜跟着移动，鼠标在放大镜中心 X Y是放大镜相对于小图的left top
+		 */
+		
+		small.onmousemove = function() {
+			var e = event || arguments[0];
+			//console.log(e.clientX);
+			var wintop = $(window).scrollTop();
+			//   相对于当前屏幕的坐标-small的左边距 -本身宽度的一半
+			var x = e.clientX - (small.offsetLeft + buy.offsetLeft) - fdj.offsetWidth / 2;
+			var y = e.clientY +wintop- (small.offsetTop + buy.offsetTop) - fdj.offsetHeight / 2;
+			//边界问题
+			if(x <= 0) {
+				fdj.style.left = 0 + "px";
+			} else if(x >= (small.offsetWidth - fdj.offsetWidth)) {
+				fdj.style.left = small.offsetWidth - fdj.offsetWidth + "px"
+			} else {
+				fdj.style.left = x + "px";
+			}
+			if(y <= 0) {
+				fdj.style.top = 0 + "px";
+			} else if(y >= (small.offsetHeight - fdj.offsetHeight)) {
+				fdj.style.top = small.offsetHeight - fdj.offsetHeight + "px"
+			} else {
+				fdj.style.top = y + "px";
+			}
+			//移动  得到移动距离比例
+			var wk = 700 / 350;
+			var hk = 700 / 350;
+			big.style.backgroundPosition = wk * (-fdj.offsetLeft) + "px" + " " + hk * (-fdj.offsetTop) + "px"
+
+		}
+
+		//		获取某件商品
+		var thisURL = document.URL;
+		var getval = thisURL.split('?')[1];
+		//		  var showval= getval.split("=")[1];
+		$.ajax({
+			type: "get",
+			url: "http://lc.shudong.wang/api_goods.php?goods_id=" + getval,
+			dataType: "json",
+			success: function(data) {
+				$(".buy-name").text(getval);
+				$(".buy-tu img").attr("src", data.data[0].goods_thumb);
+				$(".jiehsao-txt").text(data.data[0].goods_name);
+				$(".bigtu").css("background", "url(" + data.data[0].goods_thumb + ")");
+				$(".bigtu").css("background-size", "700px 700px")
+				$(".jia-num").text("￥" + data.data[0].price)
+
+			}
+		});
+		//		      加数量
+		var shuliangnum = 1;
+		$(".shuliang-num").val(shuliangnum);
+		$(".jian").click(function() {
+			if(shuliangnum == 1) {
+				shuliangnum = 1;
+			} else {
+				shuliangnum--;
+				$(".shuliang-num").val(shuliangnum);
+			}
+
+		})
+		$(".jia").click(function() {
+
+			shuliangnum++;
+			$(".shuliang-num").val(shuliangnum);
+		})
+
+		//		     购物车
+        var offset = $("#shopping").offset();
+        var feitu = $(".buy-tu").offset();
+		$(".buy-car").click(function() {
+			var shuliang =  $(".shuliang-num").val();
+			console.log(shuliang)
+			$.ajax({
+				type: "post",
+				url: "http://lc.shudong.wang/api_cart.php",
+				dataType: "json",
+                beforeSend: function(request) {
+					request.setRequestHeader("token", sessionStorage.token);
+				},
+				data: {
+					"goods_id": getval,
+					number: shuliang
+				},
+				success: function(data) {
+					if(data.code==0){
+						var img = $(".buy-tu img").attr('src');
+						var flyer = $('<img class="u-flyer" src="' + img + '">');
+						flyer.fly({
+							start: {
+								left: feitu.left+150, //开始位置（必填）#fly元素会被设置成position: fixed 
+								top: feitu.top+200//开始位置（必填） 
+							},
+							end: {
+								left: offset.left + 10, //结束位置（必填） 
+								top: offset.top + 10, //结束位置（必填） 
+								width: 0, //结束时宽度 
+								height: 0 //结束时高度 
+							},
+							onEnd: function() { //结束回调 
+								$("#msg").show().animate({
+									height: '50px'
+								}, 200).fadeOut(1000); //提示信息 
+								$(".u-flyer").hide();
+							}
+						});
+					}else{
+						alert(data.message);
+					}
+					
+				}
+			});
+			$(".zhanshi").children().remove();
+			carlie();
+			
+			    
+				
+		})
+		
+		carlie();
+	</script>
+
+</html>
